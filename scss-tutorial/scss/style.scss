@@ -1,0 +1,89 @@
+// Comment
+@import "variables";
+@import "mixins";
+
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+@include link(silver, red, blue, green);
+
+.header {
+  @include link(silver, red, blue, green) {
+    background-color: #000;
+
+    &:visited{
+      color: red;
+    }
+  }
+}
+
+
+#grid {
+  float: left;
+  width: 100%;
+
+  > div {
+    @include grid(4, 15%)
+  }
+}
+
+@for $i from 24 to 29 {
+  .#{$someVar}-#{$i} {
+    width: 50px + $i;
+    height: 50px + $i;
+  }
+}
+
+.block:not(.first) {
+  @include padd(blue, 20px 40px 30px 50px);
+  background: $bgColor;
+  height: 200px;
+  border: $border;
+  width: $blockWidth;
+  margin-bottom: 20px;
+}
+
+// Вложеные стили
+#central_block {
+  padding: 30px;
+
+  ul {
+    list-style: none;
+    display: inline-block;
+
+    li {
+      float: left;
+      //margin-right: 10px;
+      width: (100% / 3);
+
+      a {
+        @include font($fontW: bold, $color: blue);
+        //color: blue;
+
+        &:hover {
+          color: red;
+        }
+      }
+
+      //a:hover{
+      //  color: red;
+      //}
+    }
+  }
+
+  a {
+    @include font(light)
+    //color: $color;
+  }
+}
+
+.first {
+  background-color: $bgColor;
+  border: $border;
+  width: $blockWidth;
+  height: 100px;
+  margin-bottom: 20px;
+}
